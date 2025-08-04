@@ -1,20 +1,231 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contacto | Alambrados Daniis</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alambrados Dani´s</title>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f9f9f9;
+    html {
+      scroll-behavior: smooth;
+      width: 100%;
+      overflow-x: hidden;
     }
 
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f9f9f9;
+      scroll-behavior: smooth;
+    }
+
+    header,
+    footer {
+      background-color: #2d2d2d;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    nav {
+      background-color: #444;
+      text-align: center;
+      padding: 0.5rem;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 2rem;
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+      color: #2d2d2d;
+    }
+
+    .carrusel-wrapper {
+      position: relative;
+    }
+
+    .carrusel {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      gap: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    .carrusel::-webkit-scrollbar {
+      display: none;
+    }
+
+    .producto {
+      flex: 0 0 30%;
+      scroll-snap-align: center;
+      background-color: white;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      min-width: 250px;
+      box-sizing: border-box;
+    }
+
+    .producto img {
+      width: auto;
+      max-width: 150px;
+      max-height: 120px;
+      display: block;
+      margin: 0 auto 0.5rem auto;
+      border-radius: 8px;
+    }
+
+    .producto h3 {
+      margin-top: 0;
+    }
+
+    .empresa {
+      flex: 0 0 auto;
+      scroll-snap-align: center;
+      background: none;
+      padding: 0.5rem;
+      min-width: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .empresa img {
+      max-width: 100px;
+      max-height: 80px;
+      object-fit: contain;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+
+    .btn-carrusel {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #3b863e;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .btn-carrusel.izquierda {
+      left: -15px;
+    }
+
+    .btn-carrusel.derecha {
+      right: -15px;
+    }
+
+    .testimonio {
+      background-color: white;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-left: 5px solid #3b863e;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .testimonio strong {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #3b863e;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Botón WhatsApp */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      z-index: 1000;
+      background-color: transparent;
+      color: #FFF;
+      border-radius: 50%;
+      box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+      animation: pulse 2s infinite;
+    }
+
+    .whatsapp-btn img {
+      width: 55px;
+      height: 55px;
+      cursor: pointer;
+    }
+
+    /* Botón volver arriba */
+    .top-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #3b863e;
+      color: white;
+      padding: 11px 18px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      z-index: 100;
+      text-decoration: none;
+    }
+
+    /* Redes sociales */
+    .redes {
+      margin-top: 1rem;
+    }
+
+    .redes a {
+      margin: 0 10px;
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+    }
+
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+      }
+
+      70% {
+        transform: scale(1.2);
+        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+      }
+
+      100% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+      }
+    }
+
+    /* formulario */
     #contacto {
       padding: 40px 20px;
       background: #f9f9f9;
+      font-family: 'Segoe UI', sans-serif;
     }
 
     #contacto h2 {
@@ -57,7 +268,7 @@
       min-width: 300px;
       background: #ffffff;
       padding: 25px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
       border-radius: 5px;
     }
 
@@ -113,6 +324,7 @@
       font-weight: 500;
     }
 
+    /* Responsive */
     @media (max-width: 768px) {
       .contacto-contenedor {
         flex-direction: column;
@@ -124,85 +336,210 @@
     }
   </style>
 </head>
-<body>
 
-<section id="contacto">
-  <h2>Contacto</h2>
-  <div class="contacto-contenedor">
-    <div class="info-contacto">
-      <p>¿Deseas una cotización o más información?</p>
-      <ul>
-        <li><strong>📞 Teléfono:</strong> 123-456-7890</li>
-        <li><strong>📧 Email:</strong> contacto@alambradosdaniis.com</li>
-        <li><strong>📍 Dirección:</strong> Calle Ejemplo #123, Ciudad, Estado</li>
-      </ul>
+<body id="top">
+
+  <header>
+    <h1>Alambrados Dani´s</h1>
+    <p>Calidad, resistencia y compromiso</p>
+  </header>
+
+  <nav>
+    <a href="#empresa">Nosotros</a>
+    <a href="#productos">Productos</a>
+    <a href="#testimonios">Testimonios</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <section id="empresa">
+    <h2>¿Quiénes somos?</h2>
+    <p>Somos una empresa especializada en la fabricación e instalación de alambrados para uso residencial, industrial y
+      agrícola. Contamos con más de 10 años de experiencia brindando soluciones de seguridad y delimitación a nuestros
+      clientes.</p>
+  </section>
+
+  <section id="productos">
+    <h2>Productos</h2>
+    <div class="carrusel-wrapper">
+      <button class="btn-carrusel izquierda" onclick="scrollCarrusel('productos-carrusel', -1)">⟵</button>
+      <div class="carrusel" id="productos-carrusel">
+        <div class="producto">
+          <img src="img/CercaElectrica.jpeg" alt="Cerca electrica">
+          <h3>Cerca eléctrica</h3>
+          <p>Para cercos deportivos, residenciales e industriales.</p>
+        </div>
+        <div class="producto">
+          <img src="img/CintaPrivacidad.jpeg" alt="Cinta de privacidad">
+          <h3>Cinta de privacidad</h3>
+          <p>Mayor seguridad con alambre tipo militar.</p>
+        </div>
+        <div class="producto">
+          <img src="img/Cosertina.jpeg" alt="Concertina">
+          <h3>Concertina</h3>
+          <p>Estructura sólida y resistente a la intemperie.</p>
+        </div>
+        <div class="producto">
+          <img src="img/MallaCiclonica.jpeg" alt="Malla ciclónica">
+          <h3>Malla ciclónica</h3>
+          <p>Diseño a medida para accesos seguros.</p>
+        </div>
+        <div class="producto">
+          <img src="img/MallaSombra.jpeg" alt="Malla sombra">
+          <h3>Malla sombra</h3>
+          <p>Diseño a medida para accesos seguros.</p>
+        </div>
+        <div class="producto">
+          <img src="img/RejaEuropea.jpeg" alt="Reja europea">
+          <h3>Reja europa</h3>
+          <p>Diseño a medida para accesos seguros.</p>
+        </div>
+      </div>
+      <button class="btn-carrusel derecha" onclick="scrollCarrusel('productos-carrusel', 1)">⟶</button>
+    </div>
+  </section>
+
+  <!-- <section id="clientes">
+  <h2>Empresas que han trabajado con nosotros</h2>
+  <div class="carrusel-wrapper">
+    <div class="carrusel" id="empresas-carrusel">
+      <div class="empresa">
+        <img src="img/logo1.png" alt="Logo 1">
+      </div>
+      <div class="empresa">
+        <img src="img/logo2.png" alt="Logo 2">
+      </div>
+      <div class="empresa">
+        <img src="img/logo3.png" alt="Logo 3">
+      </div>
+      <div class="empresa">
+        <img src="img/logo4.png" alt="Logo 4">
+      </div>
+</section> -->
+
+  <section id="testimonios">
+    <h2>Recomendaciones de nuestros clientes</h2>
+
+    <div class="testimonio">
+      <strong>Laura Méndez – Altavista</strong>
+      “Excelente trabajo y atención. Instaladores puntuales y todo muy limpio.”
     </div>
 
-    <form action="https://formsubmit.co/adalayaramburo@gmail.com" method="POST" class="formulario-contacto" id="form-contacto">
-      <!-- Protección contra spam y redirección -->
-      <input type="hidden" name="_captcha" value="true">
-      <input type="hidden" name="_next" value="https://alambradosdaniis.com/gracias.html">
-      <input type="text" name="_honey" style="display:none">
+    <div class="testimonio">
+      <strong>Ing. Jorge Herrera – Proyectos del Norte</strong>
+      “Hemos trabajado con Daniis en más de 4 proyectos. Siempre cumplen.”
+    </div>
 
-      <div class="form-row">
-        <div class="form-group">
-          <label for="contact-name">Nombre*:</label>
-          <input type="text" id="contact-name" name="name" required>
+    <div class="testimonio">
+      <strong>Sandra López – Escuela Nueva Vida</strong>
+      “Gracias a su apoyo cercamos toda la escuela. Son profesionales y responsables.”
+    </div>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <div class="contacto-contenedor">
+      <div class="info-contacto">
+        <p>¿Deseas una cotización o más información?</p>
+        <ul>
+          <li><strong>📞 Teléfono:</strong> 123-456-7890</li>
+          <li><strong>📧 Email:</strong> contacto@alambradosdaniis.com</li>
+          <li><strong>📍 Dirección:</strong> Calle Ejemplo #123, Ciudad, Estado</li>
+        </ul>
+      </div>
+
+      <form action="https://formsubmit.co/adalayaramburo@gmail.com" method="POST" class="formulario-contacto"
+        id="form-contacto">
+        <!-- Protección contra spam y redirección -->
+        <input type="hidden" name="_captcha" value="true">
+        <input type="hidden" name="_next" value="https://alambradosdaniis.com/gracias.html">
+        <input type="text" name="_honey" style="display:none">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="contact-name">Nombre*:</label>
+            <input type="text" id="contact-name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="contact-email">Correo*:</label>
+            <input type="email" id="contact-email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="contact-phone">Teléfono:</label>
+            <input type="text" id="contact-phone" name="phone">
+          </div>
         </div>
+
         <div class="form-group">
-          <label for="contact-email">Correo*:</label>
-          <input type="email" id="contact-email" name="email" required>
+          <label for="contact-product">Producto/Servicio:</label>
+          <select id="contact-product" name="product" required>
+            <option value="">Seleccione el producto o servicio</option>
+            <option>Alambrados</option>
+            <option>Euro Panel</option>
+            <option>Electrocercas</option>
+            <option>Rejas Especiales</option>
+            <option>Techados</option>
+            <option>Puntas de agave</option>
+            <option>Instalación</option>
+            <option>Distribución</option>
+            <option>Fabricación</option>
+          </select>
         </div>
+
         <div class="form-group">
-          <label for="contact-phone">Teléfono:</label>
-          <input type="text" id="contact-phone" name="phone">
+          <label for="contact-message">Mensaje*:</label>
+          <textarea id="contact-message" name="comments" required></textarea>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label for="contact-product">Producto/Servicio:</label>
-        <select id="contact-product" name="product" required>
-          <option value="">Seleccione el producto o servicio</option>
-          <option>Alambrados</option>
-          <option>Euro Panel</option>
-          <option>Electrocercas</option>
-          <option>Rejas Especiales</option>
-          <option>Techados</option>
-          <option>Puntas de agave</option>
-          <option>Instalación</option>
-          <option>Distribución</option>
-          <option>Fabricación</option>
-        </select>
-      </div>
+        <div class="form-group">
+          <button type="submit" class="boton-enviar">Cotizar sin costo</button>
+          <p id="form-status" class="estado-form"></p>
+        </div>
+      </form>
+    </div>
+  </section>
 
-      <div class="form-group">
-        <label for="contact-message">Mensaje*:</label>
-        <textarea id="contact-message" name="comments" required></textarea>
-      </div>
+  <footer>
+    <p>&copy; 2025 Alambrados Daniis. Todos los derechos reservados.</p>
+    <div class="redes">
+      <a href="https://facebook.com" target="_blank">Facebook</a>
+      <a href="https://wa.me/5211234567890" target="_blank">WhatsApp</a>
+    </div>
+  </footer>
 
-      <div class="form-group">
-        <button type="submit" class="boton-enviar">Cotizar sin costo</button>
-        <p id="form-status" class="estado-form"></p>
-      </div>
-    </form>
-  </div>
-</section>
+  <!-- Botón de WhatsApp flotante -->
+  <a class="whatsapp-btn"
+    href="https://api.whatsapp.com/send?phone=523325907334&text=Hola,%20buen%20día.%20Me%20interesa%20una%20cotización."
+    target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+  </a>
 
-<script>
-  // Validación básica antes del envío real
-  document.getElementById('form-contacto').addEventListener('submit', function (e) {
-    const name = document.getElementById('contact-name').value.trim();
-    const email = document.getElementById('contact-email').value.trim();
-    const message = document.getElementById('contact-message').value.trim();
-    const status = document.getElementById('form-status');
+  <!-- Botón volver arriba -->
+  <a href="#top" class="top-btn">⬆</a>
 
-    if (!name || !email || !message) {
-      e.preventDefault(); // evita el envío solo si hay error
-      status.textContent = "Por favor completa los campos obligatorios.";
-      status.style.color = "red";
+
+  <script>
+    // Script para carruseles
+    function scrollCarrusel(id, direction) {
+      const carrusel = document.getElementById(id);
+      const scrollAmount = carrusel.offsetWidth * 0.8;
+      carrusel.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
     }
-  });
-</script>
+
+    // Validación básica antes del envío real
+    document.getElementById('form-contacto').addEventListener('submit', function (e) {
+      const name = document.getElementById('contact-name').value.trim();
+      const email = document.getElementById('contact-email').value.trim();
+      const message = document.getElementById('contact-message').value.trim();
+      const status = document.getElementById('form-status');
+
+      if (!name || !email || !message) {
+        e.preventDefault(); // evita el envío solo si hay error
+        status.textContent = "Por favor completa los campos obligatorios.";
+        status.style.color = "red";
+      }
+    });
+  </script>
 
 </body>
+
 </html>
