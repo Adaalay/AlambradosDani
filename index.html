@@ -174,21 +174,31 @@
       cursor: pointer;
     }
 
-    /* Botón volver arriba */
-    .top-btn {
+    /* === Botón flotante "Subir" === */
+    #btnScrollTop {
       position: fixed;
       bottom: 20px;
       right: 20px;
+      border: none;
+      outline: none;
       background-color: #3b863e;
       color: white;
-      padding: 11px 18px;
-      border: none;
-      border-radius: 50%;
       cursor: pointer;
-      font-size: 18px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-      z-index: 100;
-      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 80%;
+      font-size: 20px;
+      display: none;
+      /* oculto por defecto */
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      position: fixed;
+      z-index: 9999 !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    #btnScrollTop:hover {
+      background-color: #555;
+      transform: scale(1.1);
     }
 
     /* Redes sociales */
@@ -202,7 +212,6 @@
       text-decoration: none;
       font-size: 20px;
     }
-
 
     @keyframes pulse {
       0% {
@@ -221,7 +230,7 @@
       }
     }
 
-    /* formulario */
+    /* Formulario */
     #contacto {
       padding: 40px 20px;
       background: #f9f9f9;
@@ -249,8 +258,9 @@
       min-width: 280px;
       background-color: #ffffff;
       padding: 20px;
-      border-left: 4px solid #003366;
+      border-left: 4px solid #3b863e;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
     }
 
     .info-contacto ul {
@@ -269,7 +279,7 @@
       background: #ffffff;
       padding: 25px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-      border-radius: 5px;
+      border-radius: 8px;
     }
 
     .form-row {
@@ -304,7 +314,7 @@
     }
 
     .boton-enviar {
-      background-color: #003366;
+      background-color: #3b863e;
       color: white;
       padding: 12px 24px;
       border: none;
@@ -315,7 +325,7 @@
     }
 
     .boton-enviar:hover {
-      background-color: #005599;
+      background-color: #3b653c;
     }
 
     .estado-form {
@@ -337,7 +347,8 @@
   </style>
 </head>
 
-<body id="top">
+<body>
+  <button id="btnScrollTop" title="Volver arriba">↑</button>
 
   <header>
     <h1>Alambrados Dani´s</h1>
@@ -441,17 +452,17 @@
       <div class="info-contacto">
         <p>¿Deseas una cotización o más información?</p>
         <ul>
-          <li><strong>📞 Teléfono:</strong> 123-456-7890</li>
-          <li><strong>📧 Email:</strong> contacto@alambradosdaniis.com</li>
-          <li><strong>📍 Dirección:</strong> Calle Ejemplo #123, Ciudad, Estado</li>
+          <li><strong>📞 Teléfono:</strong> 331-704-9068</li>
+          <li><strong>📧 Email:</strong> arual031112@gmail.com </li>
+          <li><strong>📍 Dirección:</strong> Calle Camichines #17, Colonia Las Mesitas, Jalisco, México</li>
         </ul>
       </div>
 
-      <form action="https://formsubmit.co/adalayaramburo@gmail.com" method="POST" class="formulario-contacto"
+      <form action="https://formsubmit.co/arual031112@gmail.com" method="POST" class="formulario-contacto"
         id="form-contacto">
         <!-- Protección contra spam y redirección -->
         <input type="hidden" name="_captcha" value="true">
-        <input type="hidden" name="_next" value="https://alambradosdaniis.com/gracias.html">
+        <!-- <input type="hidden" name="_next" value="https://alambradosdaniis.com/gracias.html"> -->
         <input type="text" name="_honey" style="display:none">
 
         <div class="form-row">
@@ -502,28 +513,33 @@
     <p>&copy; 2025 Alambrados Daniis. Todos los derechos reservados.</p>
     <div class="redes">
       <a href="https://facebook.com" target="_blank">Facebook</a>
-      <a href="https://wa.me/5211234567890" target="_blank">WhatsApp</a>
+      <a href="https://api.whatsapp.com/send?phone=523317049068&text=Hola,%20buen%20día.%20Me%20interesa%20una%20cotización." target="_blank">WhatsApp</a>
     </div>
   </footer>
 
   <!-- Botón de WhatsApp flotante -->
   <a class="whatsapp-btn"
-    href="https://api.whatsapp.com/send?phone=523325907334&text=Hola,%20buen%20día.%20Me%20interesa%20una%20cotización."
-    target="_blank">
+    href="https://api.whatsapp.com/send?phone=523317049068&text=Hola,%20buen%20día.%20Me%20interesa%20una%20cotización." target="_blank">
     <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
   </a>
 
-  <!-- Botón volver arriba -->
-  <a href="#top" class="top-btn">⬆</a>
-
 
   <script>
-    // Script para carruseles
-    function scrollCarrusel(id, direction) {
-      const carrusel = document.getElementById(id);
-      const scrollAmount = carrusel.offsetWidth * 0.8;
-      carrusel.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
-    }
+    // Función para subir al inicio
+    window.addEventListener("scroll", function () {
+      const btn = document.getElementById("btnScrollTop");
+      if (window.scrollY > 200) {
+        btn.style.display = "block";
+      } else {
+        btn.style.display = "none";
+      }
+    });
+    document.getElementById("btnScrollTop").onclick = function () {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    };
 
     // Validación básica antes del envío real
     document.getElementById('form-contacto').addEventListener('submit', function (e) {
